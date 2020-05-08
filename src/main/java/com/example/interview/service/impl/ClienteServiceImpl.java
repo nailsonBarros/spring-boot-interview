@@ -8,6 +8,10 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.interview.exception.CustomException;
+import com.example.interview.exception.DeleteClienteByIdException;
+import com.example.interview.exception.FindClienteByIdException;
+import com.example.interview.exception.InsertClienteException;
+import com.example.interview.exception.UpdateClienteNomeByIdException;
 import com.example.interview.model.Cidade;
 import com.example.interview.model.Cliente;
 import com.example.interview.repository.ClienteRepository;
@@ -38,7 +42,7 @@ public class ClienteServiceImpl implements ClienteService {
 		if(cliente.isPresent()) {
 			return cliente.get();
 		}else {
-			throw new CustomException(Constants.CLIENTE_NOT_FOUND);
+			throw new FindClienteByIdException(Constants.CLIENTE_NOT_FOUND);
 		}
 		
 		
@@ -51,7 +55,7 @@ public class ClienteServiceImpl implements ClienteService {
 			clienteRepository.deleteById(id);
 			return new Response(Constants.SUCESS, Constants.DELETED_SUCCESSFUL);
 		}
-		throw new CustomException(Constants.CLIENTE_NOT_FOUND);
+		throw new DeleteClienteByIdException(Constants.CLIENTE_NOT_FOUND);
 		
 	}
 	
@@ -65,7 +69,7 @@ public class ClienteServiceImpl implements ClienteService {
 			return clienteRepository.save(optionalCliente.get());
 		}
 		
-		throw new CustomException(Constants.CLIENTE_NOT_FOUND);
+		throw new UpdateClienteNomeByIdException(Constants.CLIENTE_NOT_FOUND);
 		
 	}
 	
@@ -73,14 +77,14 @@ public class ClienteServiceImpl implements ClienteService {
 	public Cliente insert(Cliente cliente){
 		
 		if(cliente.getCidade() == null) {
-			throw new CustomException(Constants.CIDADE_NOT_FOUND);
+			throw new InsertClienteException(Constants.CIDADE_NOT_FOUND);
 		}
 		
 		if(cliente.getCidade().getNome() == null 
 				|| cliente.getCidade().getNome().equals("")
 				|| cliente.getCidade().getEstado() == null
 				|| cliente.getCidade().getEstado().equals("")) {
-			throw new CustomException(Constants.CIDADE_OR_ESTADO_NOT_FOUND);
+			throw new InsertClienteException(Constants.CIDADE_OR_ESTADO_NOT_FOUND);
 		}
 		
 		Cidade cidade = cidadeService.saveCidade(new Cidade(cliente.getCidade().getNome(),

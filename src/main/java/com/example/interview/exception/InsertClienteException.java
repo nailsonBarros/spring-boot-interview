@@ -1,11 +1,11 @@
 package com.example.interview.exception;
 
 
-public class CustomException extends RuntimeException {
+public class InsertClienteException extends RuntimeException {
 	
 	private static final long serialVersionUID = 1L;
 
-	public CustomException(String exception) {
+	public InsertClienteException(String exception) {
 		super(exception);
 	}
 }

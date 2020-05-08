@@ -26,4 +26,6 @@ public class AdviceExecptionHandler extends ResponseEntityExceptionHandler {
 				HttpStatus.BAD_REQUEST.toString());
 		return new ResponseEntity<>(customizedResponseException, HttpStatus.BAD_REQUEST);
 	}
+	
+//	TODO: FAZER ESSA AREA DA EXECPTION
 }
