@@ -7,7 +7,6 @@ import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
-import com.example.interview.exception.CustomException;
 import com.example.interview.exception.DeleteClienteByIdException;
 import com.example.interview.exception.FindClienteByIdException;
 import com.example.interview.exception.InsertClienteException;

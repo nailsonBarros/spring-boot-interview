@@ -19,14 +19,6 @@ public class AdviceExecptionHandler extends ResponseEntityExceptionHandler {
 				ex.getBindingResult().getAllErrors().get(0).getDefaultMessage(), HttpStatus.BAD_REQUEST.toString());
 		return new ResponseEntity<>(exceptionResponse, HttpStatus.BAD_REQUEST);
 	}
-
-	@ExceptionHandler(CustomException.class)
-	public final ResponseEntity<CustomizedResponse> handleBusinessException(CustomException ex) {
-		CustomizedResponse customizedResponseException = new CustomizedResponse(ex.getMessage(),
-				HttpStatus.BAD_REQUEST.toString());
-		return new ResponseEntity<>(customizedResponseException, HttpStatus.BAD_REQUEST);
-	}
-	
 	
 	@ExceptionHandler(DeleteClienteByIdException.class)
 	public final ResponseEntity<CustomizedResponse> handleDeleteClienteByIdException(DeleteClienteByIdException ex) {
