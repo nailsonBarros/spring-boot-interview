@@ -27,5 +27,33 @@ public class AdviceExecptionHandler extends ResponseEntityExceptionHandler {
 		return new ResponseEntity<>(customizedResponseException, HttpStatus.BAD_REQUEST);
 	}
 	
-//	TODO: FAZER ESSA AREA DA EXECPTION
+	
+	@ExceptionHandler(DeleteClienteByIdException.class)
+	public final ResponseEntity<CustomizedResponse> handleDeleteClienteByIdException(DeleteClienteByIdException ex) {
+		CustomizedResponse customizedResponseException = new CustomizedResponse(ex.getMessage(),
+				HttpStatus.BAD_REQUEST.toString());
+		return new ResponseEntity<>(customizedResponseException, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(FindClienteByIdException.class)
+	public final ResponseEntity<CustomizedResponse> handleFindClienteByIdException(FindClienteByIdException ex) {
+		CustomizedResponse customizedResponseException = new CustomizedResponse(ex.getMessage(),
+				HttpStatus.BAD_REQUEST.toString());
+		return new ResponseEntity<>(customizedResponseException, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(InsertClienteException.class)
+	public final ResponseEntity<CustomizedResponse> handleInsertClienteException(InsertClienteException ex) {
+		CustomizedResponse customizedResponseException = new CustomizedResponse(ex.getMessage(),
+				HttpStatus.BAD_REQUEST.toString());
+		return new ResponseEntity<>(customizedResponseException, HttpStatus.BAD_REQUEST);
+	}
+	
+	@ExceptionHandler(UpdateClienteNomeByIdException.class)
+	public final ResponseEntity<CustomizedResponse> handleUpdateClienteNomeByIdException(UpdateClienteNomeByIdException ex) {
+		CustomizedResponse customizedResponseException = new CustomizedResponse(ex.getMessage(),
+				HttpStatus.BAD_REQUEST.toString());
+		return new ResponseEntity<>(customizedResponseException, HttpStatus.BAD_REQUEST);
+	}
+	
 }
