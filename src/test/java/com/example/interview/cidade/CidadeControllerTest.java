@@ -57,7 +57,7 @@ public class CidadeControllerTest {
 	}
 	
 	@Test
-	public void btestGetFindByNomeRecordAsJson() throws Exception {
+	public void testGetFindByNomeRecordAsJson() throws Exception {
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CIDADE_NOME_URL, cidade.getNome()).accept(APPLICATION_JSON);
 		
@@ -68,7 +68,7 @@ public class CidadeControllerTest {
 	}
 	
 	@Test
-	public void ctestGetFindByEstadoRecordAsJson() throws Exception {
+	public void testGetFindByEstadoRecordAsJson() throws Exception {
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CIDADE_ESTADO_URL, cidade.getEstado()).accept(APPLICATION_JSON);
 		
@@ -79,7 +79,7 @@ public class CidadeControllerTest {
 	}
 	
 	@Test
-	public void atestPostSaveCidadeRecordAsJson() throws Exception {
+	public void testPostSaveCidadeRecordAsJson() throws Exception {
 		
 		String jsonFile = TestUtil.readJsonFile("/json/CidadeParameterInsert.json");
 		

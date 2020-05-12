@@ -66,7 +66,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void aaaaaatestPostSaveClienteRecordAsJson() throws Exception {
+	public void testPostSaveClienteRecordAsJson() throws Exception {
 
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterInsert.json");
 		
@@ -81,7 +81,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void aaaaatestPostSaveClienteExecptionNomeRecordAsJson() throws Exception {
+	public void testPostSaveClienteExecptionNomeRecordAsJson() throws Exception {
 
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterExceptionNomeInsert.json");
 		
@@ -95,7 +95,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void aaaatestPostSaveClienteExecptionEstadoRecordAsJson() throws Exception {
+	public void testPostSaveClienteExecptionEstadoRecordAsJson() throws Exception {
 
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterExceptionEstadoInsert.json");
 
@@ -108,7 +108,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void aaatestPostSaveClienteExecptionNomeEmptyRecordAsJson() throws Exception {
+	public void testPostSaveClienteExecptionNomeEmptyRecordAsJson() throws Exception {
 
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterExceptionEstadoEmptyInsert.json");
 
@@ -121,7 +121,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void aatestPostSaveClienteExecptionEstadoEmptyRecordAsJson() throws Exception {
+	public void testPostSaveClienteExecptionEstadoEmptyRecordAsJson() throws Exception {
 
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterExceptionNomeEmptyInsert.json");
 
@@ -134,7 +134,7 @@ public class ClienteControllerTest {
 	}
 	
 	@Test
-	public void atestPostSaveClienteExecptionCidadeNullRecordAsJson() throws Exception {
+	public void testPostSaveClienteExecptionCidadeNullRecordAsJson() throws Exception {
 
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterExceptionCidadeNullInsert.json");
 		
@@ -148,9 +148,13 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void batestGetFindByIdRecordAsJson() throws Exception {
+	public void testGetFindByIdRecordAsJson() throws Exception {
 		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CLIENTE_ID_URL, 1L).accept(APPLICATION_JSON);
+		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterGetInsert.json");
+		
+		this.mockMvc.perform(post(CLIENTE_URL).accept(APPLICATION_JSON).content(jsonFile).contentType(APPLICATION_JSON));
+		
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CLIENTE_ID_URL, 2L).accept(APPLICATION_JSON);
 		
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
 		MockHttpServletResponse response = result.getResponse();
@@ -159,7 +163,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void btestGetFindByIdNotFoundRecordAsJson() throws Exception {
+	public void testGetFindByIdNotFoundRecordAsJson() throws Exception {
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CLIENTE_ID_URL, 2L).accept(APPLICATION_JSON);
 		
@@ -170,7 +174,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void ctestGetFindByNomeCompletoRecordAsJson() throws Exception {
+	public void testGetFindByNomeCompletoRecordAsJson() throws Exception {
 		
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.get(CLIENTE_NOME_URL, cliente.getNomeCompleto()).accept(APPLICATION_JSON);
 		
@@ -182,11 +186,11 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void datestPutUpdateNomeClienteRecordAsJson() throws Exception {
+	public void testPutUpdateNomeClienteRecordAsJson() throws Exception {
 		
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterUpdateName.json");
 		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(CLIENTE_ID_URL, 1L).accept(APPLICATION_JSON)
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(CLIENTE_ID_URL, 2L).accept(APPLICATION_JSON)
 				.content(jsonFile).contentType(APPLICATION_JSON);
 		
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -196,11 +200,11 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void dtestPutUpdateNomeClienteExceptionRecordAsJson() throws Exception {
+	public void testPutUpdateNomeClienteExceptionRecordAsJson() throws Exception {
 
 		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterUpdateName.json");
 		
-		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(CLIENTE_ID_URL, 2L).accept(APPLICATION_JSON)
+		RequestBuilder requestBuilder = MockMvcRequestBuilders.put(CLIENTE_ID_URL, 0L).accept(APPLICATION_JSON)
 				.content(jsonFile).contentType(APPLICATION_JSON);
 		
 		MvcResult result = mockMvc.perform(requestBuilder).andReturn();
@@ -210,7 +214,12 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void eatestDeleteByIdClienteRecordAsJson() throws Exception {
+	public void testDeleteByIdClienteRecordAsJson() throws Exception {
+
+		String jsonFile = TestUtil.readJsonFile("/json/ClienteParameterDeleteInsert.json");
+		
+		this.mockMvc.perform(post(CLIENTE_URL).accept(APPLICATION_JSON).content(jsonFile).contentType(APPLICATION_JSON));
+		
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete(CLIENTE_ID_URL, 1L).accept(APPLICATION_JSON)
 				.contentType(APPLICATION_JSON);
@@ -223,7 +232,7 @@ public class ClienteControllerTest {
 	}
 
 	@Test
-	public void etestDeleteByIdClienteExceptionRecordAsJson() throws Exception {
+	public void testDeleteByIdClienteExceptionRecordAsJson() throws Exception {
 
 		RequestBuilder requestBuilder = MockMvcRequestBuilders.delete(CLIENTE_ID_URL, 2L).accept(APPLICATION_JSON)
 				.contentType(APPLICATION_JSON);
